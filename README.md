@@ -1,5 +1,7 @@
 # GitHub Stats Visualization
 
+![Generate Stats Images](https://github.com/jonfairbanks/github-stats/workflows/Generate%20Stats%20Images/badge.svg)
+
 Generate visualizations of GitHub user and repository statistics using GitHub
 Actions.
 
