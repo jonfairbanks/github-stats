@@ -316,13 +316,12 @@ Languages:
             )
             raw_results = raw_results if raw_results is not None else {}
 
-            self._name = raw_results.get("data", {}).get("viewer", {}).get("name", None)
+            viewer = (raw_results.get("data") or {}).get("viewer")
+            if raw_results.get("errors") or not isinstance(viewer, dict):
+                raise RuntimeError("GitHub returned incomplete profile statistics")
+
             if self._name is None:
-                self._name = (
-                    raw_results.get("data", {})
-                    .get("viewer", {})
-                    .get("login", "No Name")
-                )
+                self._name = viewer.get("name") or viewer.get("login") or self.username
 
             contrib_repos = (
                 raw_results.get("data", {})
